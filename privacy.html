@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy — Fun World Hidden Objects 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(165deg, #120a1f 0%, #1a0f2e 40%, #0d0618 100%);
+            color: #d1c4e9;
+            line-height: 1.65;
+        }
+
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 100% 50% at 50% 0%, rgba(255, 193, 7, 0.1) 0%, transparent 50%),
+                repeating-linear-gradient(-12deg, transparent, transparent 80px, rgba(149, 117, 205, 0.04) 80px, rgba(149, 117, 205, 0.04) 81px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shell {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px 64px;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(186, 104, 200, 0.35);
+        }
+
+        .brand {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #ffe082;
+        }
+
+        .meta {
+            font-size: 0.78rem;
+            color: #9575cd;
+        }
+
+        .headline-block {
+            margin-bottom: 36px;
+        }
+
+        .headline-block h1 {
+            font-size: clamp(1.6rem, 4vw, 2.15rem);
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            max-width: 18ch;
+        }
+
+        .headline-block p {
+            font-size: 1.05rem;
+            color: #b39ddb;
+            max-width: 36em;
+        }
+
+        .stat-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(149, 117, 205, 0.35);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid rgba(149, 117, 205, 0.4);
+        }
+
+        .stat-cell {
+            background: rgba(26, 15, 48, 0.95);
+            padding: 20px 14px;
+            text-align: center;
+        }
+
+        .stat-cell .label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ce93d8;
+            margin-bottom: 8px;
+        }
+
+        .stat-cell .value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff8e1;
+        }
+
+        @media (max-width: 520px) {
+            .stat-strip {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .article {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .article-block {
+            display: grid;
+            grid-template-columns: 72px 1fr;
+            gap: 20px 24px;
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(103, 58, 183, 0.25);
+        }
+
+        @media (max-width: 480px) {
+            .article-block {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        .article-block:last-child {
+            border-bottom: none;
+        }
+
+        .num {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+            color: rgba(186, 104, 200, 0.35);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .article-block h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffe082;
+            margin-bottom: 10px;
+        }
+
+        .article-block p {
+            font-size: 0.95rem;
+            color: #c5b3e0;
+        }
+
+        .article-block p + p {
+            margin-top: 12px;
+        }
+
+        .callout {
+            margin-top: 36px;
+            padding: 22px 24px;
+            border-radius: 16px;
+            background: rgba(45, 27, 78, 0.55);
+            border: 1px dashed rgba(255, 213, 79, 0.35);
+            font-size: 0.88rem;
+            color: #b39ddb;
+            text-align: center;
+        }
+
+        .nav-home {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .nav-home a {
+            display: inline-block;
+            font-weight: 700;
+            color: #1a0f2e;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 14px 28px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #fff8e1 0%, #ffd54f 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 22px rgba(255, 193, 7, 0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-home a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255, 213, 79, 0.35);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-pattern" aria-hidden="true"></div>
+    <div class="shell">
+        <header class="top-bar">
+            <span class="brand">Fun World Hidden Objects 2</span>
+            <span class="meta">App Store distribution · English</span>
+        </header>
+
+        <div class="headline-block">
+            <h1>How this app treats information</h1>
+            <p>This page is a plain-language companion to the Apple App Store listing for Fun World Hidden Objects 2. It is not a substitute for Apple’s own terms, labels, or system controls.</p>
+        </div>
+
+        <div class="stat-strip" role="group" aria-label="Summary">
+            <div class="stat-cell">
+                <div class="label">Account</div>
+                <div class="value">Not required</div>
+            </div>
+            <div class="stat-cell">
+                <div class="label">Data collection</div>
+                <div class="value">None stated</div>
+            </div>
+            <div class="stat-cell">
+                <div class="label">Young players</div>
+                <div class="value">Rated 4+</div>
+            </div>
+        </div>
+
+        <article class="article">
+            <section class="article-block">
+                <span class="num" aria-hidden="true">01</span>
+                <div>
+                    <h2>What the App Store label says</h2>
+                    <p>Apple’s “App Privacy” section for this title currently indicates that the developer does not collect data from this app. If a future update changes that label, the in-store privacy nutrition label takes priority over any static web copy.</p>
+                </div>
+            </section>
+
+            <section class="article-block">
+                <span class="num" aria-hidden="true">02</span>
+                <div>
+                    <h2>Advertising &amp; third parties</h2>
+                    <p>The product is listed on the App Store as containing advertising. Ad delivery and any related measurement are governed by Apple’s platform rules, your device settings (including tracking permissions where applicable), and the policies of ad networks that Apple allows in apps.</p>
+                    <p>This overview does not describe every SDK or creative partner; refer to your iOS or iPadOS privacy controls and Apple’s documentation for the most up-to-date detail.</p>
+                </div>
+            </section>
+
+            <section class="article-block">
+                <span class="num" aria-hidden="true">03</span>
+                <div>
+                    <h2>Apple, Game Center, and your device</h2>
+                    <p>Installing, updating, or restoring the app goes through Apple’s infrastructure. Optional features such as Game Center leaderboards follow Apple’s account and Game Center terms.</p>
+                    <p>Crash diagnostics, analytics toggles, and similar device-level options are managed in system settings rather than inside this static page.</p>
+                </div>
+            </section>
+
+            <section class="article-block">
+                <span class="num" aria-hidden="true">04</span>
+                <div>
+                    <h2>Local saves &amp; removal</h2>
+                    <p>Gameplay progress, preferences, or similar artifacts may be stored on your hardware so sessions can resume. Deleting the app or erasing its data from Settings removes that local information from the device.</p>
+                </div>
+            </section>
+
+            <section class="article-block">
+                <span class="num" aria-hidden="true">05</span>
+                <div>
+                    <h2>Families &amp; minors</h2>
+                    <p>The title is rated 4+. Parents and guardians can use Screen Time, Ask to Buy, and other Apple parental tools to supervise installs, in-app behavior, and purchases on shared devices.</p>
+                </div>
+            </section>
+
+            <section class="article-block">
+                <span class="num" aria-hidden="true">06</span>
+                <div>
+                    <h2>Changes to this text</h2>
+                    <p>If platform requirements or the app’s behavior change in a material way, this summary may be revised so it still reflects the product you download from the App Store.</p>
+                </div>
+            </section>
+        </article>
+
+        <p class="callout">Regional privacy rights, consumer laws, and Apple ID–related requests are handled through Apple’s official channels and your local legal framework—not through this informational page.</p>
+
+        <nav class="nav-home">
+            <a href="index.html">Back to overview</a>
+        </nav>
+    </div>
+</body>
+
+</html>
